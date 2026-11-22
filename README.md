@@ -12,7 +12,7 @@
 
 Digital advertising campaigns require constant creative refresh and A/B variations that overwhelm marketing teams when drafted manually.
 
-This project provides an end-to-end, reproducible implementation engineered to solve this challenge through verified data transformations, robust algorithms, and production-ready architecture.
+This project provides an end-to-end, reproducible implementation engineered to solve this challenge through verified data transformations, reliable algorithms, and production-ready architecture.
 
 ---
 
