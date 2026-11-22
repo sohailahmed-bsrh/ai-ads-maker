@@ -12,9 +12,12 @@
 
 <p>
   <a href="#overview">Overview</a> &bull;
+  <a href="#purpose--problem-statement">Purpose</a> &bull;
+  <a href="#real-world-industry-applications">Use Cases</a> &bull;
+  <a href="#step-by-step-engineering-walkthrough">How It Was Built</a> &bull;
   <a href="#system-architecture">Architecture</a> &bull;
   <a href="#visual-showcase-gallery">Visual Gallery</a> &bull;
-  <a href="#core-capabilities">Capabilities</a> &bull;
+  <a href="#technology-stack-matrix">Tech Stack</a> &bull;
   <a href="#installation--setup">Installation</a> &bull;
   <a href="#author--contact-information">Author</a>
 </p>
@@ -24,7 +27,69 @@
 ---
 ## Overview
 
-AI Ads Maker is an automated marketing generation platform that transforms basic product inputs into structured, multi-channel advertising creatives. By coupling high-converting marketing copywriting templates with generative asset synthesis, the application generates targeted copy variants, product visuals, and formatted layouts across major advertising channels.
+AI Ads Maker is an automated marketing generation platform that converts raw product descriptions into structured, multi-channel advertising creatives. By coupling high-converting marketing copywriting frameworks (AIDA, PAS) with generative visual synthesis, the system outputs targeted copy variants, product visual compositions, and formatted layouts across major advertising channels.
+
+---
+
+## Purpose & Problem Statement
+
+### The Problem
+Digital marketing agencies and direct-to-consumer (D2C) brands face the creative fatigue barrier: digital ad performance declines rapidly after 7-14 days on Meta, Google, and TikTok. Producing dozens of creative variations across multiple aspect ratios (1:1 square, 9:16 vertical stories, 16:9 widescreen banners) requires continuous design agency hours and high financial overhead.
+
+### The Engineering Purpose
+To build a programmatic ad generation pipeline that ingests a single product link or specification sheet, derives audience-segmented copywriting angles, generates high-contrast product background scenes, and renders production-ready ad packages across all major advertising aspect ratios.
+
+---
+
+## Real-World Industry Applications
+
+- **Direct-to-Consumer (D2C) E-Commerce**: Rapid creative generation for Shopify brand owners testing dozens of ad hooks weekly.
+- **Digital Performance Marketing Agencies**: Automated creative production for performance marketers managing multi-client ad budgets.
+- **App & SaaS Product Launches**: Generating formatted feature announcement banners and conversion-optimized social assets.
+- **Local Business Marketing**: Creating localized, branded promotion flyers and social ads with minimal technical effort.
+
+---
+
+## Step-by-Step Engineering Walkthrough (How It Was Built)
+
+### Step 1: Product Ingestion & Feature Normalization
+The ingestion service (`backend/src/services/upload.service.js`) accepts product imagery and raw specifications. Text inputs are parsed into core value propositions, target customer personas, key features, and price points.
+
+### Step 2: Algorithmic Copywriting Generation
+The copywriting service (`backend/src/services/script.service.js`) implements psychological advertising frameworks:
+- **Attention-Interest-Desire-Action (AIDA)**
+- **Problem-Agitate-Solution (PAS)**
+- **Before-After-Bridge (BAB)**
+The system outputs high-converting headlines, body text variants, and localized calls-to-action (CTAs).
+
+### Step 3: Generative Visual Scene Synthesis & Composition
+The visual module (`backend/src/services/video.service.js`) removes background clutter from product photos and places products into synthesized commercial environments (lifestyle settings, studio pedestals, luxury textures).
+
+### Step 4: Multi-Ratio Layout Adaptation Engine
+The composition engine computes typographical layouts across:
+- **1:1 Square**: Instagram and Facebook In-Feed posts.
+- **9:16 Vertical**: TikTok, Instagram Reels, and YouTube Shorts.
+- **16:9 Landscape**: YouTube In-Stream ads and Google Display Network banners.
+Font scaling, padding vectors, and contrast backgrounds are automatically calculated to ensure legibility across all viewport resolutions.
+
+### Step 5: Batch Production Packaging & Export
+The backend packages generated creatives into a structured export bundle containing high-resolution PNGs, video clips with voiceover audio, and an accompanying JSON metadata manifest ready for bulk upload into Meta Ads Manager.
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A[Product Specifications & Brand Guidelines] --> B[Copywriting Formulation Engine]
+    B --> C[Audience-Segmented Headlines & Value Propositions]
+    A --> D[Visual Scene Prompt Generator]
+    D --> E[Generative Asset Synthesis Service]
+    C --> F[Canvas Composition & Typography Engine]
+    E --> F
+    F --> G[Multi-Ratio Layout Adapter: 1:1, 9:16, 16:9]
+    G --> H[Final Ad Creative Package & High-Res Export]
+```
 
 ---
 
@@ -65,30 +130,14 @@ AI Ads Maker is an automated marketing generation platform that transforms basic
 
 ---
 
-## System Architecture
+## Technology Stack Matrix
 
-```mermaid
-flowchart TD
-    A[Product Specifications & Brand Guidelines] --> B[Copywriting Formulation Engine]
-    B --> C[Audience-Segmented Headlines & Value Propositions]
-    A --> D[Visual Scene Prompt Generator]
-    D --> E[Generative Asset Synthesis Service]
-    C --> F[Canvas Composition & Typography Engine]
-    E --> F
-    F --> G[Multi-Ratio Layout Adapter: 1:1, 9:16, 16:9]
-    G --> H[Final Ad Creative Package & High-Res Export]
-```
-
----
-
-## Technology Stack
-
-| Layer | Technologies |
-| :--- | :--- |
-| Frontend | React, TypeScript, Vite, Tailwind CSS |
-| Backend Server | FastAPI, Python 3.10+, Uvicorn |
-| Image Processing | Pillow, OpenCV |
-| APIs | RESTful JSON Endpoints |
+| Layer | Technologies | Version / Role | Engineering Purpose |
+| :--- | :--- | :--- | :--- |
+| Backend Server | Node.js, Express | 20.x / 4.19+ | API routing, multipart file uploads, and generation queues |
+| Media & Video Processing | FFmpeg, Fluent-FFmpeg | Latest | Audio track concatenation, video rendering, and aspect resizing |
+| Frontend Application | React, Vite, Tailwind CSS | 18.2 / 5.0+ | Visual ad customizer, canvas previews, and parameter controls |
+| Image Processing | Sharp, Canvas | Latest | Pixel manipulation, product background compositing, and font rendering |
 
 ---
 
@@ -99,12 +148,12 @@ flowchart TD
 git clone https://github.com/sohailahmed-bsrh/ai-ads-maker.git
 cd ai-ads-maker
 
-# Start backend
+# Start backend server
 cd backend
-pip install -r requirements.txt
-python main.py
+npm install
+npm start
 
-# Start frontend
+# Start frontend in another terminal
 cd ../frontend
 npm install
 npm run dev
